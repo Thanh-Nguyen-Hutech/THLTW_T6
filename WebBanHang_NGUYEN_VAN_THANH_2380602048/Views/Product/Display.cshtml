@@ -1,0 +1,108 @@
+﻿@model WebBanHang_NGUYEN_VAN_THANH_2380602048.Models.Product
+
+@{
+    ViewData["Title"] = "Product Detail";
+}
+
+<div class="product-detail-container">
+
+    <div class="product-detail-card">
+
+        <div class="product-detail-image">
+            <img src="@Model.ImageUrl" alt="@Model.Name" />
+        </div>
+
+        <div class="product-detail-info">
+
+            <h2 class="product-title">
+                @Model.Name
+            </h2>
+
+            <div class="product-category">
+                Category: @Model.Category?.Name
+            </div>
+
+            <div class="product-price">
+                @Model.Price.ToString("N0") VND
+            </div>
+
+            <div class="product-description">
+                @Model.Description
+            </div>
+
+            <div class="product-buttons">
+                <a asp-action="Update" asp-route-id="@Model.Id" class="btn-edit">Edit</a>
+                <a asp-action="Index" class="btn-back">Back</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+            <style>
+    .product-detail-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .product-detail-card {
+        width: 900px;
+        display: flex;
+        gap: 40px;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .product-detail-image img {
+        width: 350px;
+        border-radius: 8px;
+    }
+
+    .product-detail-info {
+        flex: 1;
+    }
+
+    .product-title {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .product-category {
+        color: #777;
+        margin-bottom: 10px;
+    }
+
+    .product-price {
+        font-size: 24px;
+        color: #e53935;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .product-description {
+        margin-bottom: 25px;
+    }
+
+    .product-buttons a {
+        padding: 10px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    .btn-edit {
+        background: #ff9800;
+        color: white;
+    }
+
+    .btn-back {
+        background: #777;
+        color: white;
+    }
+            </style>
+

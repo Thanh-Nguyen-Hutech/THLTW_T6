@@ -1,0 +1,63 @@
+﻿@model WebBanHang_NGUYEN_VAN_THANH_2380602048.Models.Category
+
+@{
+    ViewData["Title"] = "Category Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="page-title">Category Detail</h1>
+
+<div class="card-detail">
+
+    <h4>Category Information</h4>
+    <hr />
+
+    <div class="row mb-3">
+        <div class="col-sm-3 fw-bold">
+            Category Name
+        </div>
+
+        <div class="col-sm-9">
+            @Model.Name
+        </div>
+    </div>
+
+    <div class="form-buttons">
+
+        <a asp-action="Update" asp-route-id="@Model.Id" class="btn btn-warning">
+            Edit
+        </a>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Back
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+    /* DETAIL CARD */
+
+    .card-detail {
+        max-width: 500px;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .page-title {
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .form-buttons {
+        margin-top: 20px;
+    }
+
+    .btn {
+        border-radius: 6px;
+        margin-right: 6px;
+    }
+</style>
