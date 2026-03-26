@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebBanHang_NGUYEN_VAN_THANH_2380602048.Models;
 using WebBanHang_NGUYEN_VAN_THANH_2380602048.Repositories;
 
@@ -33,7 +34,7 @@ namespace WebBanHang_NGUYEN_VAN_THANH_2380602048.Controllers
         {
             return View();
         }
-
+        [Authorize(Roles = SD.Role_Admin)]
         [HttpPost]
         public async Task<IActionResult> Add(Category category)
         {
@@ -55,7 +56,7 @@ namespace WebBanHang_NGUYEN_VAN_THANH_2380602048.Controllers
 
             return View(category);
         }
-
+        [Authorize(Roles = SD.Role_Admin)]
         [HttpPost]
         public async Task<IActionResult> Update(int id, Category category)
         {
@@ -80,7 +81,7 @@ namespace WebBanHang_NGUYEN_VAN_THANH_2380602048.Controllers
 
             return View(category);
         }
-
+        [Authorize(Roles = SD.Role_Admin)]
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

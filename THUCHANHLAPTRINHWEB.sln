@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.9.34701.34
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11620.152 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBanHang_NGUYEN_VAN_THANH_2380602048", "WebBanHang_NGUYEN_VAN_THANH_2380602048\WebBanHang_NGUYEN_VAN_THANH_2380602048.csproj", "{EA56650A-A8CD-410D-8A2E-D7032398E810}"
 EndProject

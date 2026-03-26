@@ -1,12 +1,25 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using WebBanHang_NGUYEN_VAN_THANH_2380602048.Models;
 using WebBanHang_NGUYEN_VAN_THANH_2380602048.Repositories;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+ .AddDefaultTokenProviders()
+ .AddDefaultUI()
+ .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddRazorPages();
+
+builder.Services.ConfigureApplicationCookie(options => {
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.LogoutPath = $"/Identity/Account/AccessDenied";
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -29,10 +42,20 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
-app.MapControllerRoute(
+app.MapRazorPages();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+    name: "Admin",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 app.Run();

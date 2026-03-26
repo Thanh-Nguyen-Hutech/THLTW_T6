@@ -8,16 +8,88 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-</head>
+    <style>
+            body {
+                background: #f5f5f5;
+                font-family: Segoe UI, Arial;
+            }
 
+            /* HEADER */
+            .shop-header {
+                background: #ff5722;
+                padding: 15px 0;
+                margin-bottom: 30px;
+            }
+
+            .header-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .logo {
+                color: white;
+                font-size: 22px;
+                font-weight: bold;
+                text-decoration: none;
+            }
+
+            /* SEARCH */
+            .search-box input {
+                width: 300px;
+                padding: 6px 10px;
+                border: none;
+                border-radius: 5px;
+            }
+
+            /* MENU */
+            /* Biến menu-links thành flex container để mọi thứ nằm trên 1 hàng */
+            .menu-links {
+                display: flex;
+                align-items: center;
+            }
+
+                /* Ghi đè thêm class .nav-link của _LoginPartial nếu có */
+                .menu-links a,
+                .menu-links .nav-link {
+                    color: white !important;
+                    margin-left: 20px;
+                    text-decoration: none;
+                    font-weight: 500;
+                }
+
+                    .menu-links a:hover,
+                    .menu-links .nav-link:hover {
+                        text-decoration: underline;
+                    }
+
+                /* FIX: Reset lại thẻ ul/li mặc định của _LoginPartial */
+                .menu-links ul {
+                    display: flex;
+                    align-items: center;
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                }
+
+            /* MAIN */
+            .main-content {
+                min-height: 600px;
+            }
+
+            /* FOOTER */
+            .footer {
+                margin-top: 50px;
+                padding: 20px;
+                background: #eee;
+            }
+    </style>
+</head>
 <body>
 
-    <!-- HEADER -->
     <header class="shop-header">
-
         <div class="container header-container">
-
-            <a class="logo" asp-controller="Home" asp-action="Index">
+            <a class="logo" asp-area="" asp-controller="Home" asp-action="Index">
                 🛒 WebBanHang
             </a>
 
@@ -26,112 +98,32 @@
             </form>
 
             <div class="menu-links">
-
                 <a asp-controller="Home" asp-action="Index">Home</a>
-
                 <a asp-controller="Product" asp-action="Index">Products</a>
-
                 <a asp-controller="Categories" asp-action="Index">Categories</a>
-
+                
+                <partial name="_LoginPartial" />
             </div>
-
         </div>
-
     </header>
 
-
-    <!-- MAIN CONTENT -->
     <div class="container main-content">
-
         <main role="main">
             @RenderBody()
         </main>
-
     </div>
 
-
-    <!-- FOOTER -->
     <footer class="footer">
-
         <div class="container text-center">
-
             © 2026 WebBanHang
             <br />
             Simple E-Commerce Demo
-
         </div>
-
     </footer>
-
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
-
 </body>
 </html>
-
-            <style>
-    body {
-        background: #f5f5f5;
-        font-family: Segoe UI, Arial;
-    }
-
-    /* HEADER */
-
-    .shop-header {
-        background: #ff5722;
-        padding: 15px 0;
-        margin-bottom: 30px;
-    }
-
-    .header-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .logo {
-        color: white;
-        font-size: 22px;
-        font-weight: bold;
-        text-decoration: none;
-    }
-
-    /* SEARCH */
-
-    .search-box input {
-        width: 300px;
-        padding: 6px 10px;
-        border: none;
-        border-radius: 5px;
-    }
-
-    /* MENU */
-
-    .menu-links a {
-        color: white;
-        margin-left: 20px;
-        text-decoration: none;
-        font-weight: 500;
-    }
-
-        .menu-links a:hover {
-            text-decoration: underline;
-        }
-
-    /* MAIN */
-
-    .main-content {
-        min-height: 600px;
-    }
-
-    /* FOOTER */
-
-    .footer {
-        margin-top: 50px;
-        padding: 20px;
-        background: #eee;
-    }
-            </style>

@@ -1,0 +1,134 @@
+﻿@model WebBanHang_NGUYEN_VAN_THANH_2380602048.Models.Product
+
+@{
+    ViewData["Title"] = "Update Product";
+}
+
+<div class="container-add">
+
+    <div class="form-card">
+
+        <h2 class="form-title">Update Product</h2>
+
+        <form asp-action="Update" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control custom-input" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control custom-input" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control custom-input"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Current Image</label>
+                <div class="image-preview">
+                    <img src="@Model.ImageUrl" id="preview" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Change Image</label>
+                <input type="file" name="imageUrl" class="form-control custom-input" onchange="previewImage(event)">
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId"></label>
+                <select asp-for="CategoryId"
+                        class="form-control custom-input"
+                        asp-items="ViewBag.CategoryId">
+                </select>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn-submit">Save</button>
+                <a asp-action="Index" class="btn-back">Back</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<style>
+    .container-add {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .form-card {
+        width: 500px;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .form-title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .custom-input {
+        margin-bottom: 15px;
+        border-radius: 6px;
+    }
+
+    .image-preview {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+        .image-preview img {
+            max-width: 150px;
+            border-radius: 6px;
+        }
+
+    .form-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-submit {
+        background: #ff5722;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+    }
+
+    .btn-back {
+        padding: 10px 20px;
+        background: #777;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+</style>
+
+<script>
+    function previewImage(event) {
+
+        const reader = new FileReader();
+
+        reader.onload = function () {
+            const img = document.getElementById("preview");
+            img.src = reader.result;
+        };
+
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
